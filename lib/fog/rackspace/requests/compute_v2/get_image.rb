@@ -9,6 +9,7 @@ module Fog
             :path => "images/#{image_id}"
           )
         end
+        alias :get_image_details :get_image
       end
     end
   end

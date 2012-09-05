@@ -12,6 +12,7 @@ module Fog
         attribute :flavor_id,   :aliases => 'flavorId', :type => :integer
         attribute :host_id,     :aliases => 'hostId'
         attribute :image_id,    :aliases => 'imageId',  :type => :integer
+        attribute :disk_config
         attribute :metadata
         attribute :name
         attribute :personality
@@ -90,6 +91,7 @@ module Fog
           options = {
             'metadata'    => metadata,
             'name'        => name,
+            'disk_config' => disk_config,
             'personality' => personality
           }
           options = options.reject {|key, value| value.nil?}

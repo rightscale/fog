@@ -12,8 +12,20 @@ module Fog
               'maxCount' => max_count
             }
           }
+          if options['metadata']
+            data['server']['metadata'] = options['metadata']
+          end
+          if options['personality']
+            data['server']['personality'] = []
+            for file in options['personality']
+              data['server']['personality'] << {
+                'contents'  => Base64.encode64(file['contents']),
+                'path'      => file['path']
+              }
+            end
+          end
 
-          data['server']['diskConfig'] = options[:disk_config] unless options[:disk_config].nil?
+          data['server']['diskConfig'] = options['disk_config'] unless options['disk_config'].nil?
 
           request(
             :body => Fog::JSON.encode(data),
