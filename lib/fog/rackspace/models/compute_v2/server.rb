@@ -140,6 +140,13 @@ module Fog
           true
         end
 
+        alias :public_ip_address :ipv4_address
+
+        def private_ip_address
+          address = addresses["private"].find { |addr| addr["version"] == 4 }
+          address["addr"]
+        end
+
         private
 
         def adminPass=(new_admin_pass)
