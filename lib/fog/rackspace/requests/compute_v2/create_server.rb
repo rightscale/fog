@@ -25,7 +25,8 @@ module Fog
             end
           end
 
-          data['server']['diskConfig'] = options['disk_config'] unless options['disk_config'].nil?
+          # Even though docs say this should be diskConfig, need to pass OS-DCF:diskConfig
+          data['server']["OS-DCF:diskConfig"] = options['disk_config'] unless options['disk_config'].nil?
 
           request(
             :body => Fog::JSON.encode(data),
