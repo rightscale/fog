@@ -140,7 +140,10 @@ module Fog
           true
         end
 
-        alias :public_ip_address :ipv4_address
+        def public_ip_address
+          address = addresses["public"].find { |addr| addr["version"] == 4 }
+          address["addr"]
+        end
 
         def private_ip_address
           address = addresses["private"].find { |addr| addr["version"] == 4 }
