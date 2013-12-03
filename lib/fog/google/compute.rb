@@ -98,7 +98,7 @@ module Fog
           rescue Exception => msg
             if msg.to_s.include? 'was not found' and retries_remaining > 0
               retries_remaining -= 1
-              sleep 0.1
+              sleep 1
               retry
             else
               raise msg
