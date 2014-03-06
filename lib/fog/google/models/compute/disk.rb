@@ -61,7 +61,7 @@ module Fog
         # auto_delete = true will automatically delete disk upon instance termination.
         def get_object(writable=true, boot=false, device_name=nil, auto_delete=nil)
           mode = writable ? 'READ_WRITE' : 'READ_ONLY'
-          return {
+          value = {
             'autoDelete' => auto_delete,
             'boot' => boot,
             'source' => self_link,
@@ -69,6 +69,7 @@ module Fog
             'deviceName' => device_name,
             'type' => 'PERSISTENT'
           }.select { |k, v| !v.nil? }
+          return Hash[value]
         end
 
         def get_as_boot_disk(writable=true, auto_delete=false)
